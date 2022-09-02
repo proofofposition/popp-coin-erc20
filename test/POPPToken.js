@@ -59,6 +59,10 @@ describe("🚩 Full POPP Token Flow", function () {
                     myContract.connect(owner).mint(alice.address, 10)
                 ).to.be.revertedWith("Pausable: paused");
 
+                await expect(
+                    myContract.connect(owner).transfer(alice.address, 10)
+                ).to.be.revertedWith("Pausable: paused");
+
                 await myContract.unpause();
                 await myContract.mint(alice.address, 10);
                 const balance = await myContract.balanceOf(alice.address);

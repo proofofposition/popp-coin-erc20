@@ -64,6 +64,13 @@ describe("🚩 Full POPP Token Flow", function () {
                 const balance = await myContract.balanceOf(alice.address);
                 expect(balance.toNumber()).to.be.equal(10);
             });
+
+            it("Should be able to burn POPP tokens", async function () {
+                await myContract.mint(alice.address, 10);
+                await myContract.connect(alice).burn(5);
+                const balance = await myContract.balanceOf(alice.address);
+                expect(balance.toNumber()).to.be.equal(5);
+            });
         });
     });
 });

@@ -16,9 +16,6 @@ describe("🚩 Full POPP Token Flow", function () {
     // eslint-disable-next-line no-unused-vars
     let owner;
     let alice;
-    let connie;
-    let bob;
-    let tokenId;
 
     // console.log("hre:",Object.keys(hre)) // <-- you can access the hardhat runtime env here
 

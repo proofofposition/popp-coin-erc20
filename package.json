@@ -18,12 +18,17 @@
   },
   "homepage": "https://github.com/proofofposition/popp#readme",
   "devDependencies": {
+    "@gnosis.pm/mock-contract": "^4.0.0",
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",
     "@nomicfoundation/hardhat-toolbox": "^1.0.2",
-    "hardhat": "^2.10.2"
+    "chai": "^4.3.6",
+    "hardhat": "^2.10.1",
+    "hardhat-gas-reporter": "^1.0.9"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.3",
     "@openzeppelin/contracts-upgradeable": "^4.7.3",
-    "dotenv": "^16.0.2"
+    "dotenv": "^16.0.2",
+    "hardhat-gas-reporter": "^1.0.9"
   }
 }

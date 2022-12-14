@@ -8,6 +8,7 @@
 // yarn test && echo "PASSED" || echo "FAILED"
 //
 const {expect} = require("chai");
+const {ethers} = hre;
 
 describe("🚩 Full POPP Token Flow", function () {
     this.timeout(120000);

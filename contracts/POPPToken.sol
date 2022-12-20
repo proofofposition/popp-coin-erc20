@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity 0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
@@ -12,14 +12,23 @@ contract POPPToken is ERC20, ERC20Capped, ERC20Burnable, Pausable, Ownable {
         _mint(msg.sender, 10**6 * 10 ** decimals());
     }
 
+    /**
+    * @dev {@inheritdoc}
+    **/
     function pause() public onlyOwner {
         _pause();
     }
 
+    /**
+    * @dev {@inheritdoc}
+    **/
     function unpause() public onlyOwner {
         _unpause();
     }
 
+    /**
+    * @dev {@inheritdoc}
+    **/
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
     }

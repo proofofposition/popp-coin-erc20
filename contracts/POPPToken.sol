@@ -42,7 +42,7 @@ contract POPPToken is ERC20, ERC20Capped, ERC20Burnable, Pausable, Ownable {
     }
 
     function decimals() public view virtual override returns (uint8) {
-        return 1;
+        return 18;
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 amount)

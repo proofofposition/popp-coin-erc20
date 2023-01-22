@@ -29,8 +29,8 @@ describe("🚩 Full POPP Token Flow", function () {
             const POPPToken = await ethers.getContractFactory("POPPToken");
             myContract = await POPPToken.connect(owner).deploy();
 
-            const balance0ETH = await myContract.balanceOf(owner.address);
-            console.log("\t", " ⚖️ Starting Contract ETH balance: ", balance0ETH.toString());
+            const balance = await myContract.balanceOf(owner.address);
+            console.log("\t", " ⚖️ Starting Contract balance: ", balance.toString());
 
         });
 

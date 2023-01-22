@@ -20,7 +20,7 @@ describe("🚩 Full POPP Token Flow", function () {
 
     // console.log("hre:",Object.keys(hre)) // <-- you can access the hardhat runtime env here
 
-    describe("Popp Verification", function () {
+    describe("Popp ERC20", function () {
         // `beforeEach` will run before each test, re-deploying the contract every
         // time. It receives a callback, which can be async.
         beforeEach(async function () {
@@ -51,27 +51,20 @@ describe("🚩 Full POPP Token Flow", function () {
                 expect(balance.toNumber()).to.be.equal(0);
             });
 
-            it("Should be able to pause the contract", async function () {
-                await myContract.pause();
-                await expect(
-                    myContract.connect(owner).mint(alice.address, 10)
-                ).to.be.revertedWith("Pausable: paused");
-
-                await expect(
-                    myContract.connect(owner).transfer(alice.address, 10)
-                ).to.be.revertedWith("Pausable: paused");
-
-                await myContract.unpause();
-                await myContract.mint(alice.address, 10);
-                const balance = await myContract.balanceOf(alice.address);
-                expect(balance.toNumber()).to.be.equal(10);
-            });
-
             it("Should be able to burn POPP tokens", async function () {
                 await myContract.mint(alice.address, 10);
                 await myContract.connect(alice).burn(5);
                 const balance = await myContract.balanceOf(alice.address);
                 expect(balance.toNumber()).to.be.equal(5);
+            });
+
+            it("Should revert if cap reached", async function () {
+                await expect(
+                    myContract.connect(owner).mint(alice.address, 1000000000000000000000000000n)
+                ).to.be.revertedWith("ERC20Capped: cap exceeded");
+
+                const balance = await myContract.balanceOf(alice.address);
+                expect(balance.toNumber()).to.be.equal(0);
             });
         });
     });

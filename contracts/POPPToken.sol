@@ -7,6 +7,8 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Capped.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract POPPToken is ERC20, ERC20Capped, ERC20Burnable, Ownable {
+    error CapReached();
+
     constructor() ERC20("Proof Of Position", "POPP") ERC20Capped(10**9 * 10 ** decimals()) {
         _mint(msg.sender, 10**6 * 10 ** decimals());
     }
@@ -22,7 +24,10 @@ contract POPPToken is ERC20, ERC20Capped, ERC20Burnable, Ownable {
       * @dev See {ERC20-_mint}.
      */
     function _mint(address account, uint256 amount) internal virtual override(ERC20, ERC20Capped) {
-        require(ERC20.totalSupply() + amount <= cap(), "ERC20Capped: cap exceeded");
+        if (ERC20.totalSupply() + amount > cap()) {
+            revert CapReached();
+        }
+
         super._mint(account, amount);
     }
 }

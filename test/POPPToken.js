@@ -68,7 +68,7 @@ describe("🚩 Full POPP Token Flow", function () {
             it("Should revert if cap reached", async function () {
                 await expect(
                     myContract.connect(owner).mint(alice.address, 1000000000000000000000000000n)
-                ).to.be.revertedWith("ERC20Capped: cap exceeded");
+                ).to.be.revertedWithCustomError(myContract, "CapReached");
 
                 const balance = await myContract.balanceOf(alice.address);
                 expect(balance.toNumber()).to.be.equal(0);

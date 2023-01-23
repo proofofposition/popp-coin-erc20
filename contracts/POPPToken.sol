@@ -25,8 +25,4 @@ contract POPPToken is ERC20, ERC20Capped, ERC20Burnable, Ownable {
         require(ERC20.totalSupply() + amount <= cap(), "ERC20Capped: cap exceeded");
         super._mint(account, amount);
     }
-
-    function decimals() public view virtual override returns (uint8) {
-        return 18;
-    }
 }

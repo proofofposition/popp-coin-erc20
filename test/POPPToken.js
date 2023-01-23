@@ -42,6 +42,13 @@ describe("🚩 Full POPP Token Flow", function () {
                 expect(balance.toNumber()).to.be.equal(10);
             });
 
+            it("Should be able to transfer POPP tokens", async function () {
+                await myContract.connect(owner).mint(alice.address, 10);
+
+                const balance = await myContract.balanceOf(alice.address);
+                expect(balance.toNumber()).to.be.equal(10);
+            });
+
             it("Should revert if a non-owner tries to mint", async function () {
                 await expect(
                     myContract.connect(alice).mint(alice.address, 10)

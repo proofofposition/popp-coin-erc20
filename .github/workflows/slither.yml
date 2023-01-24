@@ -15,7 +15,7 @@ jobs:
         id: slither
         with:
           sarif: results.sarif
-          fail-on: all
+          fail-on: config
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2

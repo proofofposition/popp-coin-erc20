@@ -3,22 +3,19 @@ name: Slither Analysis
 on:
   pull_request:
     branches: [ main ]
-    paths-ignore:
-      - '.gitignore'
-      - 'README.md'
-      - '.editorconfig'
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    env:
+      API_URL: ${{ secrets.POPP_ERC20_API_URL }}
     steps:
       - uses: actions/checkout@v3
-
       - name: Run Slither
         uses: crytic/slither-action@v0.2.0
         id: slither
         with:
           sarif: results.sarif
-          fail-on: all
+          fail-on: config
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2

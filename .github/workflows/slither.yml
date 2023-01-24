@@ -10,7 +10,8 @@ jobs:
       API_URL: ${{ secrets.POPP_ERC20_API_URL }}
     steps:
       - uses: actions/checkout@v3
-
+      - name: Copy .env
+        run: cp .env.example .env
       - name: Run Slither
         uses: crytic/slither-action@v0.2.0
         id: slither

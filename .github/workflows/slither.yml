@@ -6,6 +6,8 @@ on:
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    env:
+      API_URL: ${{ secrets.POPP_ERC20_API_URL }}
     steps:
       - uses: actions/checkout@v3
 

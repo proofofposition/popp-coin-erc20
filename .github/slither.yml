@@ -3,10 +3,6 @@ name: Slither Analysis
 on:
   pull_request:
     branches: [ main ]
-    paths-ignore:
-      - '.gitignore'
-      - 'README.md'
-      - '.editorconfig'
 jobs:
   analyze:
     runs-on: ubuntu-latest
